@@ -24,7 +24,7 @@ volatile bool trava = false;//Variável para impedir o acionamento repetitivo do
 //Protótipos das funções
 void iniciar_pinos();
 void gpio_irq_handler(uint btn, uint32_t events);
-bool desligar_led(alarm_id_t id, void *user_data);
+bool turn_off_callback(alarm_id_t id, void *user_data);
 bool ligar_todos_leds(alarm_id_t id, void *user_data);
 
 int main(){
@@ -94,14 +94,14 @@ bool ligar_todos_leds(alarm_id_t id, void *user_data){
     gpio_put(led_green_pino, estado_green);
 
     //Criando um novo alarme, agora chamando outra função de callback, com o de 300 milissegundos
-    add_alarm_in_ms(3000, (alarm_callback_t)desligar_led, (void *)NULL, false);
+    add_alarm_in_ms(3000, (alarm_callback_t)turn_off_callback, (void *)NULL, false);
 
     //Aqui estou retornado um FALSE para que esse alarme não seja chamado novamente.
     return false;
 }
 
 //Função que desliga os leds da placa
-bool desligar_led(alarm_id_t id, void *user_data){
+bool turn_off_callback(alarm_id_t id, void *user_data){
     //Nesta sequência, de IF e ELSE IF seguindo as condições, serão desligados os leds.
     if((estado_red == true) && (estado_blue == true) && (estado_green == true)){
         estado_red = !estado_red;
@@ -121,7 +121,7 @@ bool desligar_led(alarm_id_t id, void *user_data){
     /*Neste IF irá validar se a TRAVA for TRUE irá criar um novo alarme para desligar o leds na
     sequência, mas caso esteja FALSE não irá criar um novo alarme encerrando o loop.*/
     if(trava == true){
-        add_alarm_in_ms(3000, (alarm_callback_t)desligar_led, (void *)NULL, false);
+        add_alarm_in_ms(3000, (alarm_callback_t)turn_off_callback, (void *)NULL, false);
     }
 
     return false;
