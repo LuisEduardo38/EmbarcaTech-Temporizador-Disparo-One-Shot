@@ -1,0 +1,82 @@
+{
+    "version": 1,
+    "author": "Eduardo Souza",
+    "editor": "wokwi",
+    "parts": [
+      {
+        "type": "board-pi-pico-w",
+        "id": "pico",
+        "top": 0,
+        "left": 0,
+        "attrs": { "builder": "pico-sdk" }
+      },
+      {
+        "type": "wokwi-led",
+        "id": "led1",
+        "top": 111.6,
+        "left": -140.2,
+        "attrs": { "color": "red" }
+      },
+      {
+        "type": "wokwi-led",
+        "id": "led2",
+        "top": 169.2,
+        "left": -140.2,
+        "attrs": { "color": "blue" }
+      },
+      {
+        "type": "wokwi-led",
+        "id": "led3",
+        "top": 226.8,
+        "left": -140.2,
+        "attrs": { "color": "green" }
+      },
+      {
+        "type": "wokwi-resistor",
+        "id": "r1",
+        "top": 301.85,
+        "left": -97.4,
+        "rotate": 180,
+        "attrs": { "value": "330" }
+      },
+      {
+        "type": "wokwi-pushbutton",
+        "id": "btn1",
+        "top": 25.4,
+        "left": -86.4,
+        "attrs": { "color": "green" }
+      },
+      {
+        "type": "wokwi-resistor",
+        "id": "r2",
+        "top": 340.25,
+        "left": -97.4,
+        "rotate": 180,
+        "attrs": { "value": "330" }
+      },
+      {
+        "type": "wokwi-resistor",
+        "id": "r3",
+        "top": 369.05,
+        "left": -97.4,
+        "rotate": 180,
+        "attrs": { "value": "330" }
+      }
+    ],
+    "connections": [
+      [ "pico:GP0", "$serialMonitor:RX", "", [] ],
+      [ "pico:GP1", "$serialMonitor:TX", "", [] ],
+      [ "pico:GP13", "led1:A", "red", [ "h0" ] ],
+      [ "pico:GP12", "led2:A", "blue", [ "h-82.85", "v54.39" ] ],
+      [ "pico:GP11", "led3:A", "green", [ "h-73.25", "v6.35" ] ],
+      [ "pico:GND.1", "btn1:1.r", "black", [ "h0" ] ],
+      [ "pico:GP5", "btn1:2.r", "orange", [ "h0" ] ],
+      [ "pico:GND.4", "r1:1", "black", [ "h-25.25", "v131.19" ] ],
+      [ "r1:2", "led3:C", "green", [ "v0", "h-56.4", "v-38.4" ] ],
+      [ "pico:GND.4", "r2:1", "black", [ "h-25.25", "v169.59", "h-19.2" ] ],
+      [ "pico:GND.4", "r3:1", "black", [ "h-25.25", "v198.39" ] ],
+      [ "r2:2", "led2:C", "green", [ "v0", "h-56.4", "v-134.4" ] ],
+      [ "r3:2", "led1:C", "green", [ "v0", "h-56.4", "v-220.8" ] ]
+    ],
+    "dependencies": {}
+  }

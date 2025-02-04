@@ -1,0 +1,4 @@
+[wokwi]
+version = 1
+firmware = 'build/EmbarcaTech-Temporizador-Disparo-One-Shot.uf2'
+elf = 'build/EmbarcaTech-Temporizador-Disparo-One-Shot.elf'
